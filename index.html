@@ -1,15 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KNOW YOURSELF — Diagnostic Platform</title>
+  <title>KNOW YOURSELF — Diagnóstico Táctico</title>
   
-  <!-- Typography & Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -17,8 +17,13 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
             mono: ['"Space Mono"', 'monospace'],
+          },
+          colors: {
+            black: '#000000',
+            white: '#ffffff',
           }
         }
       }
@@ -26,56 +31,43 @@
   </script>
 
   <style>
-    body {
-      background-color: #09090b;
-      color: #f4f4f5;
-    }
-    .fade-in {
-      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+    body { background-color: #000000; color: #ffffff; }
+    .fade-in { animation: fadeIn 0.4s ease-out forwards; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-neutral-800 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-white selection:text-black font-sans antialiased">
 
-  <!-- Minimal Header -->
-  <header class="border-b border-neutral-900 bg-neutral-950/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-4xl mx-auto px-6 py-5 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <h1 class="font-mono text-xs tracking-widest text-neutral-300 font-bold uppercase">KNOW YOURSELF / V2.0</h1>
+  <header class="border-b border-gray-900 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-6 py-6 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+        <h1 class="font-mono text-xs tracking-[0.2em] text-white uppercase font-bold">Know Yourself / V2.0</h1>
       </div>
-      <span class="font-mono text-[10px] text-neutral-500 border border-neutral-800 px-2 py-1 rounded">SYSTEM: ONLINE</span>
+      <span class="font-mono text-[10px] text-gray-500 border border-gray-800 px-3 py-1 uppercase tracking-[0.2em]">Sistema Activo</span>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="max-w-3xl mx-auto px-6 py-12 w-full flex-grow">
-    
-    <!-- Title Section -->
-    <div class="mb-10 border-b border-neutral-900 pb-8">
-      <p class="font-mono text-xs text-neutral-500 uppercase tracking-wider mb-2">Evaluación Personal & Performance Táctico</p>
-      <h2 class="text-3xl font-light text-white tracking-tight">Diagnóstico de Hábitos, Foco y Control Cognitivo</h2>
+  <main class="max-w-3xl mx-auto px-6 py-16 w-full flex-grow">
+    <div class="mb-12 border-b border-gray-900 pb-10">
+      <p class="font-mono text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-4">Evaluación de Desempeño</p>
+      <h2 class="font-serif text-4xl md:text-5xl text-white tracking-tight leading-tight">Diagnóstico de Hábitos y Control Cognitivo</h2>
     </div>
 
-    <!-- App Dynamic Mounting Container -->
-    <div id="app" class="bg-neutral-950 border border-neutral-900 rounded-xl p-6 md:p-8 shadow-2xl min-h-[380px] flex flex-col justify-center">
-      <!-- Dynamic Javascript Content Loaded Here -->
+    <div id="app" class="bg-black border border-gray-800 p-8 md:p-12 min-h-[450px] flex flex-col justify-center">
+      <!-- UI inyectada por JS -->
     </div>
-
   </main>
 
-  <!-- Editorial Minimal Footer -->
-  <footer class="border-t border-neutral-900 py-8 text-neutral-600 font-mono text-xs">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p>© 2026 KNOW YOURSELF — Built with Vanilla JS & Modular Architecture</p>
-      <div class="flex space-x-4 text-neutral-500">
-        <span class="hover:text-neutral-300 transition-colors">AI-Assisted Architecture</span>
-        <span>•</span>
-        <span class="hover:text-neutral-300 transition-colors">Vercel Edge</span>
+  <footer class="border-t border-gray-900 py-10 text-gray-500 font-mono text-[10px] uppercase tracking-[0.1em]">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p>© 2026 KNOW YOURSELF — Desarrollado con JS Vainilla</p>
+      <div class="flex space-x-6 text-gray-600">
+        <span>Arquitectura Asistida por IA</span>
+        <span>Despliegue Vercel</span>
       </div>
     </div>
   </footer>
