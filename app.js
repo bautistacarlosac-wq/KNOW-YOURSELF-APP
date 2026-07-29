@@ -1,5 +1,4 @@
-
-   /**
+/**
  * KNOW YOURSELF APP - Lógica Central y Gestión de Estado
  * Arquitectura: Máquina de estados modular orientada a eventos
  */
@@ -104,11 +103,47 @@ const AnalyticsEngine = {
   },
   getProfileDiagnose(totalScore) {
     if (totalScore >= 21) {
-      return { level: 'ALTO RENDIMIENTO TÁCTICO', tag: 'DOMINIO COMPLETO', summary: 'Estructura cognitiva orientada a la acción. Baja fricción de inicio y alta resiliencia operacional.' };
+      return { 
+        level: 'ALTO RENDIMIENTO TÁCTICO', 
+        tag: 'DOMINIO COMPLETO', 
+        summary: 'Estructura cognitiva orientada a la acción. Baja fricción de inicio y alta resiliencia operacional.',
+        plan: {
+          objective: 'Escalamiento de Capacidad Operativa',
+          tasks: [
+            'Aumentar 15% el volumen de carga en entrenamiento de fuerza o acondicionamiento.',
+            'Ejecutar 2 bloques de "Trabajo Profundo" (90 min) diarios sin conexión a internet.',
+            'Auditar el desempeño de un compañero y exigirle rendición de cuentas.'
+          ]
+        }
+      };
     } else if (totalScore >= 13) {
-      return { level: 'OPERATIVO EN DESARROLLO', tag: 'OPTIMIZACIÓN REQUERIDA', summary: 'Destellos de consistencia, pero sistema vulnerable ante caídas de motivación o picos de estrés.' };
+      return { 
+        level: 'OPERATIVO EN DESARROLLO', 
+        tag: 'OPTIMIZACIÓN REQUERIDA', 
+        summary: 'Destellos de consistencia, pero sistema vulnerable ante caídas de motivación o picos de estrés.',
+        plan: {
+          objective: 'Eliminación de Fricción y Consistencia',
+          tasks: [
+            'Cumplir 4 sesiones semanales de entrenamiento físico riguroso, no negociables.',
+            'Eliminar el consumo de dopamina barata (redes sociales) antes del mediodía.',
+            'Despertar a la misma hora exacta por 21 días (Cero tolerancia al botón de "posponer").'
+          ]
+        }
+      };
     } else {
-      return { level: 'ESTADO REACTIVO', tag: 'ALERTA DE SISTEMA', summary: 'Fuga severa de disciplina. Requiere un reseteo táctico de hábitos inmediato.' };
+      return { 
+        level: 'ESTADO REACTIVO', 
+        tag: 'ALERTA DE SISTEMA', 
+        summary: 'Fuga severa de disciplina. Requiere un reseteo táctico de hábitos inmediato.',
+        plan: {
+          objective: 'Reseteo Táctico de Hábitos Base',
+          tasks: [
+            'Prohibido el uso de pantallas en la primera y última hora del día.',
+            '30 minutos de movimiento físico estricto y exposición al sol diarios.',
+            'Registrar en papel cada hora gastada del día para evidenciar fugas de tiempo.'
+          ]
+        }
+      };
     }
   }
 };
@@ -187,12 +222,14 @@ const UIRenderer = {
 
     this.appEl.innerHTML = `
       <div class="fade-in space-y-10">
+        <!-- Diagnóstico -->
         <div class="border-l-4 border-white pl-6 py-2">
           <span class="text-xs font-mono uppercase tracking-widest text-gray-400 mb-2 block">${profile.tag}</span>
           <h2 class="font-serif text-3xl md:text-4xl text-white mb-4">${profile.level}</h2>
           <p class="text-gray-400 text-sm leading-relaxed font-sans max-w-2xl">${profile.summary}</p>
         </div>
 
+        <!-- Métricas -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono">
           <div class="p-6 border border-gray-800 bg-black">
             <span class="text-xs text-gray-500 block mb-2 uppercase tracking-widest">Disciplina</span>
@@ -211,8 +248,34 @@ const UIRenderer = {
           </div>
         </div>
 
+        <!-- Plan Táctico 21 Días -->
+        <div class="mt-8 border border-gray-800 bg-gray-900/30 p-6 md:p-8">
+          <div class="flex items-center space-x-3 mb-6">
+            <span class="w-2 h-2 bg-white animate-pulse"></span>
+            <h3 class="font-mono text-sm uppercase tracking-widest text-white font-bold">Protocolo a 21 Días: ${profile.plan.objective}</h3>
+          </div>
+          <ul class="space-y-4">
+            ${profile.plan.tasks.map((task, index) => `
+              <li class="flex items-start space-x-4">
+                <span class="font-mono text-xs text-gray-500 mt-1">0${index + 1}</span>
+                <p class="text-sm text-gray-300 font-sans leading-relaxed">${task}</p>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <!-- Mensaje Accountability -->
+        <div class="bg-white text-black p-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4 font-mono">
+          <div>
+            <h4 class="font-bold text-lg uppercase tracking-wider">NO ESTÁS SOLO.</h4>
+            <p class="text-xs font-semibold mt-1 opacity-80">En breve nuestro equipo te asignará a un Accountability Group.</p>
+          </div>
+          <span class="text-[10px] tracking-widest uppercase border border-black px-3 py-1">Transmisión Finalizada</span>
+        </div>
+
+        <!-- Acciones -->
         <div class="pt-8 border-t border-gray-900 flex flex-wrap gap-4 items-center justify-between font-mono">
-          <button onclick="UIRenderer.reset()" class="px-6 py-3 bg-white text-black hover:bg-gray-200 text-xs transition-all tracking-widest font-bold uppercase">
+          <button onclick="UIRenderer.reset()" class="px-6 py-3 border border-gray-700 text-gray-400 hover:bg-gray-900 hover:text-white text-xs transition-all tracking-widest font-bold uppercase">
             Reiniciar Diagnóstico
           </button>
           <span class="text-xs text-gray-500 tracking-widest uppercase">Puntaje Global: ${total} / 25</span>
