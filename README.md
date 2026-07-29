@@ -1,57 +1,47 @@
-# KNOW YOURSELF — Diagnostic Platform v2.0
+# KNOW YOURSELF — Plataforma de Diagnóstico Táctico v2.0
 
 > **Fase de Código y Despliegue Final (Assignment 3)**  
-> **Alumno:** Carlos Bautista  
-> **Stack:** HTML5, Tailwind CSS (Custom Configuration), Vanilla JS ES6+ (Modular State Architecture)  
-> **Despliegue:** Vercel Continuous Integration  
+> **Estudiante:** Carlos Bautista  
+> **Stack:** HTML5, Tailwind CSS (Minimalista B&W), JavaScript ES6+  
+> **Despliegue:** Integración Continua con Vercel Edge  
 
 ---
 
-## 🏛️ . Arquitectura Algorítmica 
+## 🏛️ 1. Arquitectura Algorítmica (#AlgorithmicStrategies)
 
-El proyecto fue diseñado utilizando el patrón de arquitectura **State-Driven UI** sin depender de frameworks pesados, garantizando un tiempo de carga inferior a 100ms y cero re-renders innecesarios en el DOM.
+El proyecto fue diseñado utilizando el patrón **State-Driven UI** en JavaScript vainilla puro. La aplicación no utiliza librerías externas de renderizado, garantizando un rendimiento óptimo de carga y evitando re-renders innecesarios.
 
-### Descomposición de Componentes Lógicos:
-1. **`STATE` (Single Source of Truth):** Objeto reactivo centralizado que almacena las respuestas, navegación y métricas acumuladas.
-2. **`StorageService`:** Módulo con manejo defensivo de excepciones (`try/catch`) para la persistencia de datos en `localStorage`.
-3. **`AnalyticsEngine`:** Motor puro de cálculo algorítmico que clasifica las métricas en 3 ejes: *Disciplina*, *Claridad* y *Resiliencia*.
-4. **`UIRenderer`:** Renderizado declarativo basado en plantillas literales de ES6 con transiciones de suavizado por CSS.
+**Flujo de Datos Estricto:**
+`[LocalStorage] ◄───► [Tienda de Estado] ───► [Motor Analítico] ───► [Renderizador UI]`
 
----
-
-## 🤖 2. Análisis Crítico de IA & Mitigación de Alucinaciones (#ComputationalTools)
-
-Durante la fase de codificación y copilotaje con modelos de lenguaje (Claude Code / Codex / Gemini), se identificaron y corrigieron activamente las siguientes **alucinaciones y deficiencias**:
-
-### 🚨 Alucinación #1: Manipulación Directa e Ineficiente del DOM
-* **Sugerencia inicial de la IA:** La IA sugirió adjuntar `addEventListener` individuales dentro de un bucle `forEach` cada vez que se cambiaba de pregunta.
-* **Problema/Incompatibilidad:** Esto generaba fuga de memoria (*memory leaks*) por acumulación de eventos redundantes al avanzar/retroceder.
-* **Mitigación Manual:** Se reestructuró hacia un esquema de delegación de eventos y llamadas directas en funciones globales de la UI (`UIRenderer.handleAnswer`), manteniendo la memoria limpia.
-
-### 🚨 Alucinación #2: Incompatibilidad de Clases de Tailwind en Generación Dinámica
-* **Sugerencia inicial de la IA:** La IA intentó concatenar nombres de clases dinámicamente (`bg-${color}-500`).
-* **Problema:** El compilador/JIT de Tailwind CSS no reconoce clases construidas dinámicamente mediante strings interpolados en tiempo de ejecución.
-* **Mitigación Manual:** Se reemplazó por paso de variables CSS puras a nivel de estilo en línea (`style="border-color: ${profile.color}"`), asegurando consistencia visual impecable.
+### Descomposición de Módulos Lógicos:
+1. **STATE (Fuente Única de Verdad):** Objeto reactivo centralizado que almacena las respuestas y la puntuación acumulada.
+2. **StorageService:** Módulo con gestión defensiva de excepciones (`try/catch`) para la persistencia de datos.
+3. **AnalyticsEngine:** Motor de cálculo algorítmico que clasifica los puntajes en 3 ejes: *Disciplina*, *Claridad* y *Resiliencia*.
+4. **UIRenderer:** Renderizado declarativo mediante plantillas literales alineado a estética editorial minimalista.
 
 ---
 
-## 🛠️ 3. Registro de Prompts de Ingenieria (Copilot Workflow)
+## 🤖 2. Auditoría de IA y Mitigación (#ComputationalTools)
 
-1. **Prompt de Arquitectura:**  
-   > *"Diseña una Single Page Application en JavaScript ES6 vanilla aplicando el principio de responsabilidad única. Separa la lógica de almacenamiento de datos (localStorage), el motor de puntuación por categorías y el renderizado del DOM."*
+Durante el flujo de desarrollo asistido por IA, se corrigieron los siguientes fallos críticos generados por el modelo:
 
-2. **Prompt de UI/UX Editorial Minimalista:**  
-   > *"Genera un layout con Tailwind CSS para una interfaz de diagnóstico basada en estética editorial oscura (estilo Vercel/Linear), usando la tipografía Plus Jakarta Sans y Space Mono. Elimina bordes brillantes innecesarios."*
+* **Alucinación #1 (Fuga de Idioma):** La IA generó textos de interfaz combinando inglés y español (ej. "Inercia Initial" o pies de página en inglés). Se aplicó una reestructuración de la matriz `QUIZ_METRICS` para forzar un español técnico, riguroso y uniforme en toda la plataforma.
+* **Alucinación #2 (Fuga de Memoria en DOM):** La IA sugirió múltiples `addEventListener` anidados en bucles durante cada cambio de vista. Se mitigó implementando un esquema de delegación directa (`onclick`) conectada al `UIRenderer`, garantizando que la memoria permanezca limpia.
 
-3. **Prompt de Manejo de Errores y Edge Cases:**  
-   > *"Escribe una función de lectura y escritura para localStorage que maneje adecuadamente errores de cuota superada o bloqueo de cookies de terceros sin romper la ejecución de la app."*
+---
+
+## 🛠️ 3. Registro de Prompts de Ingeniería
+
+1. **Arquitectura:** *"Diseña una Single Page Application en JavaScript ES6 vanilla separando la lógica de almacenamiento local, el motor analítico y el renderizador del DOM."*
+2. **Diseño Visual:** *"Crea una interfaz minimalista estricta en blanco y negro (Brutalist Minimalist) usando Tailwind CSS. Usa tipografía serif para títulos y sans-serif para lectura, eliminando bordes redondeados excesivos."*
 
 ---
 
 ## 📊 4. Autoevaluación de Rúbrica
 
-| Criterio | Nivel | Justificación Táctica |
+| Criterio | Nivel | Justificación |
 | :--- | :--- | :--- |
-| **#AlgorithmicStrategies** | **Ejemplar (5/5)** | Código modular con separación de responsabilidades clara, manejo de excepciones en Storage y renderizado declarativo optimizado. |
-| **#ComputationalTools** | **Ejemplar (5/5)** | Flujo iterativo documentado en Git, despliegue automatizado en Vercel y auditoría explícita de las alucinaciones de la IA. |
-| **#Accountability** | **Ejemplar (5/5)** | Cumplimiento completo de los entregables funcionales en tiempo y forma. |
+| **#AlgorithmicStrategies** | **Ejemplar (5/5)** | Código modular puro, separación de responsabilidades, analítica separada y manejo de excepciones. |
+| **#ComputationalTools** | **Ejemplar (5/5)** | Repositorio estructurado, despliegue Vercel funcional y auditoría explícita de corrección de la IA documentada. |
+| **#Accountability** | **Ejemplar (5/5)** | Cumplimiento estricto de entrega en tiempo y forma, reflejando iteración. |
